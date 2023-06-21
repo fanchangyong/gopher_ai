@@ -13,11 +13,11 @@ const Layout: FC<Props> = ({ children }) => {
   const router = useRouter();
   const { isLoggedIn } = useAuth();
 
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     router.push('/login');
-  //   }
-  // }, [isLoggedIn, router]);
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push('/login');
+    }
+  }, [isLoggedIn, router]);
 
   return (
     <div className="flex h-full">

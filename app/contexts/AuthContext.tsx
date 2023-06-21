@@ -19,12 +19,12 @@ type AuthProviderProps = {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-
-  // useEffect(() => {
-  //   const defaultIsLoggedIn = window.localStorage.getItem('isLoggedIn') === 'true';
-  //   setIsLoggedIn(defaultIsLoggedIn);
-  // }, []);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      return window.localStorage.getItem('isLoggedIn') === 'true';
+    }
+    return false;
+  });
 
   const login = () => {
     localStorage.setItem('isLoggedIn', 'true');
